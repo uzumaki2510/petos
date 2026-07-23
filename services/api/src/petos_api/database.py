@@ -1,7 +1,7 @@
 import logging
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy import text
-from petos_api.config import settings
+from petos_api.core.config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -19,3 +19,8 @@ async def check_postgres() -> bool:
     except Exception as e:
         logger.error(f"PostgreSQL connection failed: {e}")
         return False
+
+
+async def get_db():
+    async with async_session() as session:
+        yield session

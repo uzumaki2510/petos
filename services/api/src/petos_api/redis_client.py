@@ -1,6 +1,6 @@
 import logging
 from redis.asyncio import Redis
-from petos_api.config import settings
+from petos_api.core.config import settings
 
 logger = logging.getLogger(__name__)
 

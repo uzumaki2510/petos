@@ -11,10 +11,15 @@ describe('Foundation Page', () => {
     vi.resetAllMocks()
   })
 
-  it('renders foundation page headers', () => {
+  it('renders foundation page headers', async () => {
+    (global.fetch as any).mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ status: 'ok', version: '0.1.0' })
+    });
     render(<Home />)
     expect(screen.getByText('PetOS')).toBeTruthy()
     expect(screen.getByText('Phase 2: Engineering Foundation')).toBeTruthy()
+    await screen.findByTestId('backend-status')
   })
 
   it('renders backend disconnected state on error', async () => {

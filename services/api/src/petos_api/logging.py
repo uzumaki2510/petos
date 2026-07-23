@@ -1,5 +1,5 @@
 import logging
-from petos_api.config import settings
+from petos_api.core.config import settings
 
 
 def setup_logging() -> None:
