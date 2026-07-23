@@ -5,12 +5,12 @@ PetOS relies on a modern, typed, and scalable stack separated cleanly into a fro
 ## Frontend
 - **Framework:** Next.js (React)
 - **Language:** TypeScript
-- **Styling:** Vanilla CSS (or preferred CSS-in-JS solution pending further ADR, but prioritizing modern CSS standards).
+- **Styling:** Tailwind CSS.
 - **Visualization:** HTML5 Canvas or a 2D rendering library (e.g., Phaser.js or simple React components) to render the pixel-art office.
 
 ## Backend
 - **Framework:** FastAPI (Python)
-- **Language:** Python 3.10+
+- **Language:** Python 3.13
 - **Agent Orchestration:** LangGraph (LangChain ecosystem)
 - **Database (Source of Truth):** PostgreSQL
 - **Caching & Ephemeral State:** Redis

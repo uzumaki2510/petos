@@ -1,0 +1,85 @@
+name: petos
+
+services:
+  postgres:
+    image: pgvector/pgvector:0.8.5-pg17-bookworm
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: petos
+      POSTGRES_PASSWORD: petos_dev_password
+      POSTGRES_DB: petos_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U petos -d petos_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7.4.9-alpine
+    command: redis-server --requirepass ${REDIS_PASSWORD:-petos_redis_password}
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "REDISCLI_AUTH=$$REDIS_PASSWORD redis-cli ping | grep PONG"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-petos_redis_password}
+
+  migrate:
+    build:
+      context: .
+      dockerfile: ./services/api/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+asyncpg://petos:petos_dev_password@postgres:5432/petos_db
+      REDIS_URL: redis://:petos_redis_password@redis:6379/0
+      ENVIRONMENT: development
+    command: ["uv", "run", "alembic", "upgrade", "head"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api:
+    build:
+      context: .
+      dockerfile: ./services/api/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql+asyncpg://petos:petos_dev_password@postgres:5432/petos_db
+      REDIS_URL: redis://:${REDIS_PASSWORD:-petos_redis_password}@redis:6379/0
+      ENVIRONMENT: development
+      API_CORS_ORIGINS: '["http://localhost:3000"]'
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "python -c 'import urllib.request; urllib.request.urlopen(\"http://localhost:8000/health/ready\")'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      API_INTERNAL_URL: http://api:8000
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  redis_data:
