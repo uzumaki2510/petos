@@ -1,0 +1,11 @@
+{
+  "name": "petos",
+  "private": true,
+  "scripts": {
+    "lint": "pnpm --filter \"./apps/*\" lint",
+    "typecheck": "pnpm --filter \"./apps/*\" typecheck",
+    "test": "pnpm --filter \"./apps/*\" test",
+    "build": "pnpm --filter \"./apps/*\" build"
+  },
+  "packageManager": "pnpm@11.15.1"
+}
