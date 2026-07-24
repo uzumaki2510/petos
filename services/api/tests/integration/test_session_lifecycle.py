@@ -106,6 +106,9 @@ async def test_revoked_session_rejected(db_session):
 # ── Idle expiry ────────────────────────────────────────────────────────────────
 
 
+def _tz(dt):
+    return dt if dt.tzinfo is not None else dt.replace(tzinfo=datetime.timezone.utc)
+
 @pytest.mark.asyncio
 async def test_idle_session_expiry(db_session):
     """A session whose expires_at is in the past must be rejected."""
@@ -124,7 +127,7 @@ async def test_idle_session_expiry(db_session):
     # Expire the identity map so the re-read hits the DB
     await db_session.refresh(session)
 
-    assert session.expires_at < utc_now()
+    assert _tz(session.expires_at) < utc_now()
 
 
 # ── Absolute expiry ────────────────────────────────────────────────────────────
@@ -151,7 +154,7 @@ async def test_absolute_session_expiry(db_session):
     await db_session.commit()
     await db_session.refresh(session)
 
-    assert session.absolute_expires_at < utc_now()
+    assert _tz(session.absolute_expires_at) < utc_now()
 
 
 @pytest.mark.asyncio
@@ -171,7 +174,7 @@ async def test_absolute_expiry_is_never_extended(db_session):
     now = utc_now()
     new_idle = min(
         now + datetime.timedelta(seconds=settings.SESSION_IDLE_TTL_SECONDS),
-        session.absolute_expires_at,
+        _tz(session.absolute_expires_at),
     )
     await session_repo.update_last_seen(str(session.id), now, new_idle)
     await db_session.commit()
@@ -200,7 +203,7 @@ async def test_last_seen_throttling(db_session):
 
     # Simulate an update_last_seen that just happened (well within the interval)
     # last_seen_at was set at registration — time elapsed is ~0 seconds
-    time_since = (utc_now() - session.last_seen_at).total_seconds()
+    time_since = (utc_now() - _tz(session.last_seen_at)).total_seconds()
     assert time_since < settings.SESSION_LAST_SEEN_UPDATE_INTERVAL_SECONDS, (
         "Test assumption: last_seen was set very recently"
     )
@@ -235,7 +238,10 @@ async def test_idle_expiry_refreshed_after_throttle_interval(db_session):
     # Expire identity map to get fresh values from DB
     await db_session.refresh(session)
 
-    time_since = (utc_now() - session.last_seen_at).total_seconds()
+    time_since = (utc_now() - _tz(session.last_seen_at)).total_seconds()
+    assert time_since > settings.SESSION_LAST_SEEN_UPDATE_INTERVAL_SECONDS, (
+        f"Expected time_since > {settings.SESSION_LAST_SEEN_UPDATE_INTERVAL_SECONDS}s, got {time_since:.2f}s"
+    )
     assert time_since > settings.SESSION_LAST_SEEN_UPDATE_INTERVAL_SECONDS, (
         f"Expected time_since > {settings.SESSION_LAST_SEEN_UPDATE_INTERVAL_SECONDS}s, got {time_since:.2f}s"
     )
@@ -244,7 +250,7 @@ async def test_idle_expiry_refreshed_after_throttle_interval(db_session):
     now = utc_now()
     new_idle = min(
         now + datetime.timedelta(seconds=settings.SESSION_IDLE_TTL_SECONDS),
-        session.absolute_expires_at,
+        _tz(session.absolute_expires_at),
     )
     await session_repo.update_last_seen(str(session.id), now, new_idle)
     await db_session.commit()
@@ -252,10 +258,10 @@ async def test_idle_expiry_refreshed_after_throttle_interval(db_session):
     await db_session.refresh(session)
     # Idle TTL was set to 7d from now; aged_expires_at was only 1h from now
     # So new expires_at must be strictly greater than aged_expires_at
-    assert session.expires_at > aged_expires_at, (
+    assert _tz(session.expires_at) > _tz(aged_expires_at), (
         f"expires_at {session.expires_at} should be > aged {aged_expires_at}"
     )
-    assert session.expires_at <= session.absolute_expires_at
+    assert _tz(session.expires_at) <= _tz(session.absolute_expires_at)
 
 
 # ── Disabled user ──────────────────────────────────────────────────────────────
