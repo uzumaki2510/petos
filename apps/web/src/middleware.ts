@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 
 const SESSION_COOKIE_NAME = process.env.SESSION_COOKIE_NAME || "petos_session";
 const APP_ORIGIN = process.env.APP_ORIGIN || "http://localhost:3000";
+const ALLOWED_ORIGINS = new Set([APP_ORIGIN, "http://localhost:3000", "http://127.0.0.1:3000"]);
 
 const PUBLIC_PATHS = ["/login", "/register", "/"];
 const API_PREFIX = "/api";
@@ -13,7 +14,7 @@ export async function middleware(request: NextRequest) {
   // Basic CSRF Origin validation for mutative requests to the API
   if (pathname.startsWith(API_PREFIX) && ["POST", "PUT", "PATCH", "DELETE"].includes(request.method)) {
     const origin = request.headers.get("origin");
-    if (origin && origin !== APP_ORIGIN) {
+    if (origin && !ALLOWED_ORIGINS.has(origin)) {
       return NextResponse.json({ error: "Invalid origin" }, { status: 403 });
     }
   }
@@ -56,4 +57,4 @@ export const config = {
      */
     '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
-}
+};

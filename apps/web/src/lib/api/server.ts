@@ -4,12 +4,25 @@ const BACKEND_URL = process.env.API_INTERNAL_URL || process.env.API_URL || "http
 const BFF_SECRET = process.env.BFF_INTERNAL_SECRET || "default_bff_secret_for_local_dev";
 const SESSION_COOKIE_NAME = process.env.SESSION_COOKIE_NAME || "petos_session";
 
-export async function fetchServerApi(path: string, options: RequestInit = {}) {
+export async function fetchServerApi<T = any>(
+  path: string,
+  options: RequestInit & { timeoutMs?: number } = {}
+): Promise<T> {
+  const { timeoutMs = 15000, ...fetchOptions } = options;
+
   // Wait for cookies explicitly (Next.js 15 requirement)
   const cookieStore = await cookies();
-  const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME) || cookieStore.get("__Host-petos_session") || cookieStore.get("petos_session");
 
-  const headers = new Headers(options.headers);
+  // Check session cookie names in priority order:
+  // 1. SESSION_COOKIE_NAME from configuration
+  // 2. petos_session
+  // 3. __Host-petos_session
+  const sessionCookie =
+    cookieStore.get(SESSION_COOKIE_NAME) ||
+    cookieStore.get("petos_session") ||
+    cookieStore.get("__Host-petos_session");
+
+  const headers = new Headers(fetchOptions.headers);
   headers.set("Content-Type", "application/json");
   headers.set("Accept", "application/json");
   headers.set("X-PetOS-BFF-Secret", BFF_SECRET);
@@ -19,26 +32,35 @@ export async function fetchServerApi(path: string, options: RequestInit = {}) {
     headers.set("Cookie", `${sessionCookie.name}=${sessionCookie.value}`);
   }
 
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+
   const url = `${BACKEND_URL}${path}`;
-  const res = await fetch(url, {
-    ...options,
-    headers,
-  });
-
-  // Try to parse JSON, if it fails, return text
-  let data;
   try {
-    data = await res.json();
-  } catch (e) {
-    data = await res.text();
-  }
+    const res = await fetch(url, {
+      cache: "no-store",
+      signal: fetchOptions.signal || controller.signal,
+      ...fetchOptions,
+      headers,
+    });
 
-  if (!res.ok) {
-    const msg = typeof data === "object" ? (data?.error?.message || data?.message || data?.detail || "An error occurred") : data;
-    throw new Error(String(msg));
-  }
+    // Try to parse JSON, if it fails, return text
+    let data;
+    try {
+      data = await res.json();
+    } catch (e) {
+      data = await res.text();
+    }
 
-  return data;
+    if (!res.ok) {
+      const msg = typeof data === "object" ? (data?.error?.message || data?.message || data?.detail || "An error occurred") : data;
+      throw new Error(String(msg));
+    }
+
+    return data as T;
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 export async function getCurrentUser() {

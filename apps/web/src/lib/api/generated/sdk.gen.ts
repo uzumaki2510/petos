@@ -2,7 +2,7 @@
 
 import type { Client, ClientMeta, Options as Options2, RequestResult, TDataShape } from './client';
 import { client } from './client.gen';
-import type { ArchiveProjectV1ProjectsProjectIdArchivePostData, ArchiveProjectV1ProjectsProjectIdArchivePostErrors, ArchiveProjectV1ProjectsProjectIdArchivePostResponses, CreateProjectV1OrganizationsOrganizationIdProjectsPostData, CreateProjectV1OrganizationsOrganizationIdProjectsPostErrors, CreateProjectV1OrganizationsOrganizationIdProjectsPostResponses, GetMeV1AuthMeGetData, GetMeV1AuthMeGetResponses, GetOrganizationsV1OrganizationsGetData, GetOrganizationsV1OrganizationsGetErrors, GetOrganizationsV1OrganizationsGetResponses, GetOrganizationV1OrganizationsOrganizationIdGetData, GetOrganizationV1OrganizationsOrganizationIdGetErrors, GetOrganizationV1OrganizationsOrganizationIdGetResponses, GetProjectsV1OrganizationsOrganizationIdProjectsGetData, GetProjectsV1OrganizationsOrganizationIdProjectsGetErrors, GetProjectsV1OrganizationsOrganizationIdProjectsGetResponses, GetProjectV1ProjectsProjectIdGetData, GetProjectV1ProjectsProjectIdGetErrors, GetProjectV1ProjectsProjectIdGetResponses, LiveHealthLiveGetData, LiveHealthLiveGetResponses, LoginV1AuthLoginPostData, LoginV1AuthLoginPostErrors, LoginV1AuthLoginPostResponses, LogoutV1AuthLogoutPostData, LogoutV1AuthLogoutPostResponses, ReadyHealthReadyGetData, ReadyHealthReadyGetResponses, RegisterV1AuthRegisterPostData, RegisterV1AuthRegisterPostErrors, RegisterV1AuthRegisterPostResponses, UpdateOrganizationV1OrganizationsOrganizationIdPatchData, UpdateOrganizationV1OrganizationsOrganizationIdPatchErrors, UpdateOrganizationV1OrganizationsOrganizationIdPatchResponses, UpdateProjectV1ProjectsProjectIdPatchData, UpdateProjectV1ProjectsProjectIdPatchErrors, UpdateProjectV1ProjectsProjectIdPatchResponses } from './types.gen';
+import type { AddCommentV1TasksTaskIdCommentsPostData, AddCommentV1TasksTaskIdCommentsPostErrors, AddCommentV1TasksTaskIdCommentsPostResponses, AddDependencyV1TasksTaskIdDependenciesPostData, AddDependencyV1TasksTaskIdDependenciesPostErrors, AddDependencyV1TasksTaskIdDependenciesPostResponses, AddTaskLabelV1TasksTaskIdLabelsLabelIdPostData, AddTaskLabelV1TasksTaskIdLabelsLabelIdPostErrors, AddTaskLabelV1TasksTaskIdLabelsLabelIdPostResponses, ArchiveProjectV1ProjectsProjectIdArchivePostData, ArchiveProjectV1ProjectsProjectIdArchivePostErrors, ArchiveProjectV1ProjectsProjectIdArchivePostResponses, ArchiveTaskV1TasksTaskIdArchivePostData, ArchiveTaskV1TasksTaskIdArchivePostErrors, ArchiveTaskV1TasksTaskIdArchivePostResponses, CreateLabelV1ProjectsProjectIdLabelsPostData, CreateLabelV1ProjectsProjectIdLabelsPostErrors, CreateLabelV1ProjectsProjectIdLabelsPostResponses, CreateProjectV1OrganizationsOrganizationIdProjectsPostData, CreateProjectV1OrganizationsOrganizationIdProjectsPostErrors, CreateProjectV1OrganizationsOrganizationIdProjectsPostResponses, CreateTaskV1ProjectsProjectIdTasksPostData, CreateTaskV1ProjectsProjectIdTasksPostErrors, CreateTaskV1ProjectsProjectIdTasksPostResponses, GetBoardViewV1ProjectsProjectIdBoardGetData, GetBoardViewV1ProjectsProjectIdBoardGetErrors, GetBoardViewV1ProjectsProjectIdBoardGetResponses, GetMeV1AuthMeGetData, GetMeV1AuthMeGetResponses, GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetData, GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetErrors, GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetResponses, GetOrganizationsV1OrganizationsGetData, GetOrganizationsV1OrganizationsGetErrors, GetOrganizationsV1OrganizationsGetResponses, GetOrganizationV1OrganizationsOrganizationIdGetData, GetOrganizationV1OrganizationsOrganizationIdGetErrors, GetOrganizationV1OrganizationsOrganizationIdGetResponses, GetProjectsV1OrganizationsOrganizationIdProjectsGetData, GetProjectsV1OrganizationsOrganizationIdProjectsGetErrors, GetProjectsV1OrganizationsOrganizationIdProjectsGetResponses, GetProjectV1ProjectsProjectIdGetData, GetProjectV1ProjectsProjectIdGetErrors, GetProjectV1ProjectsProjectIdGetResponses, GetTaskV1TasksTaskIdGetData, GetTaskV1TasksTaskIdGetErrors, GetTaskV1TasksTaskIdGetResponses, ListActivitiesV1TasksTaskIdActivityGetData, ListActivitiesV1TasksTaskIdActivityGetErrors, ListActivitiesV1TasksTaskIdActivityGetResponses, ListCommentsV1TasksTaskIdCommentsGetData, ListCommentsV1TasksTaskIdCommentsGetErrors, ListCommentsV1TasksTaskIdCommentsGetResponses, ListDependenciesV1TasksTaskIdDependenciesGetData, ListDependenciesV1TasksTaskIdDependenciesGetErrors, ListDependenciesV1TasksTaskIdDependenciesGetResponses, ListLabelsV1ProjectsProjectIdLabelsGetData, ListLabelsV1ProjectsProjectIdLabelsGetErrors, ListLabelsV1ProjectsProjectIdLabelsGetResponses, ListTasksV1ProjectsProjectIdTasksGetData, ListTasksV1ProjectsProjectIdTasksGetErrors, ListTasksV1ProjectsProjectIdTasksGetResponses, LiveHealthLiveGetData, LiveHealthLiveGetResponses, LoginV1AuthLoginPostData, LoginV1AuthLoginPostErrors, LoginV1AuthLoginPostResponses, LogoutV1AuthLogoutPostData, LogoutV1AuthLogoutPostResponses, ReadyHealthReadyGetData, ReadyHealthReadyGetResponses, RegisterV1AuthRegisterPostData, RegisterV1AuthRegisterPostErrors, RegisterV1AuthRegisterPostResponses, RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteData, RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteErrors, RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteResponses, RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteData, RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteErrors, RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteResponses, TransitionTaskV1TasksTaskIdTransitionPostData, TransitionTaskV1TasksTaskIdTransitionPostErrors, TransitionTaskV1TasksTaskIdTransitionPostResponses, UpdateCommentV1TaskCommentsCommentIdPatchData, UpdateCommentV1TaskCommentsCommentIdPatchErrors, UpdateCommentV1TaskCommentsCommentIdPatchResponses, UpdateLabelV1LabelsLabelIdPatchData, UpdateLabelV1LabelsLabelIdPatchErrors, UpdateLabelV1LabelsLabelIdPatchResponses, UpdateOrganizationV1OrganizationsOrganizationIdPatchData, UpdateOrganizationV1OrganizationsOrganizationIdPatchErrors, UpdateOrganizationV1OrganizationsOrganizationIdPatchResponses, UpdateProjectV1ProjectsProjectIdPatchData, UpdateProjectV1ProjectsProjectIdPatchErrors, UpdateProjectV1ProjectsProjectIdPatchResponses, UpdateTaskV1TasksTaskIdPatchData, UpdateTaskV1TasksTaskIdPatchErrors, UpdateTaskV1TasksTaskIdPatchResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -63,6 +63,18 @@ export const registerV1AuthRegisterPost = <ThrowOnError extends boolean = false>
 });
 
 /**
+ * Update Label
+ */
+export const updateLabelV1LabelsLabelIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateLabelV1LabelsLabelIdPatchData, ThrowOnError>): RequestResult<UpdateLabelV1LabelsLabelIdPatchResponses, UpdateLabelV1LabelsLabelIdPatchErrors, ThrowOnError> => (options.client ?? client).patch<UpdateLabelV1LabelsLabelIdPatchResponses, UpdateLabelV1LabelsLabelIdPatchErrors, ThrowOnError>({
+    url: '/v1/labels/{label_id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
  * Get Organizations
  */
 export const getOrganizationsV1OrganizationsGet = <ThrowOnError extends boolean = false>(options?: Options<GetOrganizationsV1OrganizationsGetData, ThrowOnError>): RequestResult<GetOrganizationsV1OrganizationsGetResponses, GetOrganizationsV1OrganizationsGetErrors, ThrowOnError> => (options?.client ?? client).get<GetOrganizationsV1OrganizationsGetResponses, GetOrganizationsV1OrganizationsGetErrors, ThrowOnError>({ url: '/v1/organizations', ...options });
@@ -83,6 +95,11 @@ export const updateOrganizationV1OrganizationsOrganizationIdPatch = <ThrowOnErro
         ...options.headers
     }
 });
+
+/**
+ * Get Organization Members
+ */
+export const getOrganizationMembersV1OrganizationsOrganizationIdMembersGet = <ThrowOnError extends boolean = false>(options: Options<GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetData, ThrowOnError>): RequestResult<GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetResponses, GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetErrors, ThrowOnError> => (options.client ?? client).get<GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetResponses, GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetErrors, ThrowOnError>({ url: '/v1/organizations/{organization_id}/members', ...options });
 
 /**
  * Get Projects
@@ -122,3 +139,149 @@ export const updateProjectV1ProjectsProjectIdPatch = <ThrowOnError extends boole
  * Archive Project
  */
 export const archiveProjectV1ProjectsProjectIdArchivePost = <ThrowOnError extends boolean = false>(options: Options<ArchiveProjectV1ProjectsProjectIdArchivePostData, ThrowOnError>): RequestResult<ArchiveProjectV1ProjectsProjectIdArchivePostResponses, ArchiveProjectV1ProjectsProjectIdArchivePostErrors, ThrowOnError> => (options.client ?? client).post<ArchiveProjectV1ProjectsProjectIdArchivePostResponses, ArchiveProjectV1ProjectsProjectIdArchivePostErrors, ThrowOnError>({ url: '/v1/projects/{project_id}/archive', ...options });
+
+/**
+ * Get Board View
+ */
+export const getBoardViewV1ProjectsProjectIdBoardGet = <ThrowOnError extends boolean = false>(options: Options<GetBoardViewV1ProjectsProjectIdBoardGetData, ThrowOnError>): RequestResult<GetBoardViewV1ProjectsProjectIdBoardGetResponses, GetBoardViewV1ProjectsProjectIdBoardGetErrors, ThrowOnError> => (options.client ?? client).get<GetBoardViewV1ProjectsProjectIdBoardGetResponses, GetBoardViewV1ProjectsProjectIdBoardGetErrors, ThrowOnError>({ url: '/v1/projects/{project_id}/board', ...options });
+
+/**
+ * List Labels
+ */
+export const listLabelsV1ProjectsProjectIdLabelsGet = <ThrowOnError extends boolean = false>(options: Options<ListLabelsV1ProjectsProjectIdLabelsGetData, ThrowOnError>): RequestResult<ListLabelsV1ProjectsProjectIdLabelsGetResponses, ListLabelsV1ProjectsProjectIdLabelsGetErrors, ThrowOnError> => (options.client ?? client).get<ListLabelsV1ProjectsProjectIdLabelsGetResponses, ListLabelsV1ProjectsProjectIdLabelsGetErrors, ThrowOnError>({ url: '/v1/projects/{project_id}/labels', ...options });
+
+/**
+ * Create Label
+ */
+export const createLabelV1ProjectsProjectIdLabelsPost = <ThrowOnError extends boolean = false>(options: Options<CreateLabelV1ProjectsProjectIdLabelsPostData, ThrowOnError>): RequestResult<CreateLabelV1ProjectsProjectIdLabelsPostResponses, CreateLabelV1ProjectsProjectIdLabelsPostErrors, ThrowOnError> => (options.client ?? client).post<CreateLabelV1ProjectsProjectIdLabelsPostResponses, CreateLabelV1ProjectsProjectIdLabelsPostErrors, ThrowOnError>({
+    url: '/v1/projects/{project_id}/labels',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * List Tasks
+ */
+export const listTasksV1ProjectsProjectIdTasksGet = <ThrowOnError extends boolean = false>(options: Options<ListTasksV1ProjectsProjectIdTasksGetData, ThrowOnError>): RequestResult<ListTasksV1ProjectsProjectIdTasksGetResponses, ListTasksV1ProjectsProjectIdTasksGetErrors, ThrowOnError> => (options.client ?? client).get<ListTasksV1ProjectsProjectIdTasksGetResponses, ListTasksV1ProjectsProjectIdTasksGetErrors, ThrowOnError>({ url: '/v1/projects/{project_id}/tasks', ...options });
+
+/**
+ * Create Task
+ */
+export const createTaskV1ProjectsProjectIdTasksPost = <ThrowOnError extends boolean = false>(options: Options<CreateTaskV1ProjectsProjectIdTasksPostData, ThrowOnError>): RequestResult<CreateTaskV1ProjectsProjectIdTasksPostResponses, CreateTaskV1ProjectsProjectIdTasksPostErrors, ThrowOnError> => (options.client ?? client).post<CreateTaskV1ProjectsProjectIdTasksPostResponses, CreateTaskV1ProjectsProjectIdTasksPostErrors, ThrowOnError>({
+    url: '/v1/projects/{project_id}/tasks',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Update Comment
+ */
+export const updateCommentV1TaskCommentsCommentIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateCommentV1TaskCommentsCommentIdPatchData, ThrowOnError>): RequestResult<UpdateCommentV1TaskCommentsCommentIdPatchResponses, UpdateCommentV1TaskCommentsCommentIdPatchErrors, ThrowOnError> => (options.client ?? client).patch<UpdateCommentV1TaskCommentsCommentIdPatchResponses, UpdateCommentV1TaskCommentsCommentIdPatchErrors, ThrowOnError>({
+    url: '/v1/task-comments/{comment_id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Get Task
+ */
+export const getTaskV1TasksTaskIdGet = <ThrowOnError extends boolean = false>(options: Options<GetTaskV1TasksTaskIdGetData, ThrowOnError>): RequestResult<GetTaskV1TasksTaskIdGetResponses, GetTaskV1TasksTaskIdGetErrors, ThrowOnError> => (options.client ?? client).get<GetTaskV1TasksTaskIdGetResponses, GetTaskV1TasksTaskIdGetErrors, ThrowOnError>({ url: '/v1/tasks/{task_id}', ...options });
+
+/**
+ * Update Task
+ */
+export const updateTaskV1TasksTaskIdPatch = <ThrowOnError extends boolean = false>(options: Options<UpdateTaskV1TasksTaskIdPatchData, ThrowOnError>): RequestResult<UpdateTaskV1TasksTaskIdPatchResponses, UpdateTaskV1TasksTaskIdPatchErrors, ThrowOnError> => (options.client ?? client).patch<UpdateTaskV1TasksTaskIdPatchResponses, UpdateTaskV1TasksTaskIdPatchErrors, ThrowOnError>({
+    url: '/v1/tasks/{task_id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * List Activities
+ */
+export const listActivitiesV1TasksTaskIdActivityGet = <ThrowOnError extends boolean = false>(options: Options<ListActivitiesV1TasksTaskIdActivityGetData, ThrowOnError>): RequestResult<ListActivitiesV1TasksTaskIdActivityGetResponses, ListActivitiesV1TasksTaskIdActivityGetErrors, ThrowOnError> => (options.client ?? client).get<ListActivitiesV1TasksTaskIdActivityGetResponses, ListActivitiesV1TasksTaskIdActivityGetErrors, ThrowOnError>({ url: '/v1/tasks/{task_id}/activity', ...options });
+
+/**
+ * Archive Task
+ */
+export const archiveTaskV1TasksTaskIdArchivePost = <ThrowOnError extends boolean = false>(options: Options<ArchiveTaskV1TasksTaskIdArchivePostData, ThrowOnError>): RequestResult<ArchiveTaskV1TasksTaskIdArchivePostResponses, ArchiveTaskV1TasksTaskIdArchivePostErrors, ThrowOnError> => (options.client ?? client).post<ArchiveTaskV1TasksTaskIdArchivePostResponses, ArchiveTaskV1TasksTaskIdArchivePostErrors, ThrowOnError>({
+    url: '/v1/tasks/{task_id}/archive',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * List Comments
+ */
+export const listCommentsV1TasksTaskIdCommentsGet = <ThrowOnError extends boolean = false>(options: Options<ListCommentsV1TasksTaskIdCommentsGetData, ThrowOnError>): RequestResult<ListCommentsV1TasksTaskIdCommentsGetResponses, ListCommentsV1TasksTaskIdCommentsGetErrors, ThrowOnError> => (options.client ?? client).get<ListCommentsV1TasksTaskIdCommentsGetResponses, ListCommentsV1TasksTaskIdCommentsGetErrors, ThrowOnError>({ url: '/v1/tasks/{task_id}/comments', ...options });
+
+/**
+ * Add Comment
+ */
+export const addCommentV1TasksTaskIdCommentsPost = <ThrowOnError extends boolean = false>(options: Options<AddCommentV1TasksTaskIdCommentsPostData, ThrowOnError>): RequestResult<AddCommentV1TasksTaskIdCommentsPostResponses, AddCommentV1TasksTaskIdCommentsPostErrors, ThrowOnError> => (options.client ?? client).post<AddCommentV1TasksTaskIdCommentsPostResponses, AddCommentV1TasksTaskIdCommentsPostErrors, ThrowOnError>({
+    url: '/v1/tasks/{task_id}/comments',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * List Dependencies
+ */
+export const listDependenciesV1TasksTaskIdDependenciesGet = <ThrowOnError extends boolean = false>(options: Options<ListDependenciesV1TasksTaskIdDependenciesGetData, ThrowOnError>): RequestResult<ListDependenciesV1TasksTaskIdDependenciesGetResponses, ListDependenciesV1TasksTaskIdDependenciesGetErrors, ThrowOnError> => (options.client ?? client).get<ListDependenciesV1TasksTaskIdDependenciesGetResponses, ListDependenciesV1TasksTaskIdDependenciesGetErrors, ThrowOnError>({ url: '/v1/tasks/{task_id}/dependencies', ...options });
+
+/**
+ * Add Dependency
+ */
+export const addDependencyV1TasksTaskIdDependenciesPost = <ThrowOnError extends boolean = false>(options: Options<AddDependencyV1TasksTaskIdDependenciesPostData, ThrowOnError>): RequestResult<AddDependencyV1TasksTaskIdDependenciesPostResponses, AddDependencyV1TasksTaskIdDependenciesPostErrors, ThrowOnError> => (options.client ?? client).post<AddDependencyV1TasksTaskIdDependenciesPostResponses, AddDependencyV1TasksTaskIdDependenciesPostErrors, ThrowOnError>({
+    url: '/v1/tasks/{task_id}/dependencies',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Remove Dependency
+ */
+export const removeDependencyV1TasksTaskIdDependenciesDependencyIdDelete = <ThrowOnError extends boolean = false>(options: Options<RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteData, ThrowOnError>): RequestResult<RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteResponses, RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteErrors, ThrowOnError> => (options.client ?? client).delete<RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteResponses, RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteErrors, ThrowOnError>({ url: '/v1/tasks/{task_id}/dependencies/{dependency_id}', ...options });
+
+/**
+ * Remove Task Label
+ */
+export const removeTaskLabelV1TasksTaskIdLabelsLabelIdDelete = <ThrowOnError extends boolean = false>(options: Options<RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteData, ThrowOnError>): RequestResult<RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteResponses, RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteErrors, ThrowOnError> => (options.client ?? client).delete<RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteResponses, RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteErrors, ThrowOnError>({ url: '/v1/tasks/{task_id}/labels/{label_id}', ...options });
+
+/**
+ * Add Task Label
+ */
+export const addTaskLabelV1TasksTaskIdLabelsLabelIdPost = <ThrowOnError extends boolean = false>(options: Options<AddTaskLabelV1TasksTaskIdLabelsLabelIdPostData, ThrowOnError>): RequestResult<AddTaskLabelV1TasksTaskIdLabelsLabelIdPostResponses, AddTaskLabelV1TasksTaskIdLabelsLabelIdPostErrors, ThrowOnError> => (options.client ?? client).post<AddTaskLabelV1TasksTaskIdLabelsLabelIdPostResponses, AddTaskLabelV1TasksTaskIdLabelsLabelIdPostErrors, ThrowOnError>({ url: '/v1/tasks/{task_id}/labels/{label_id}', ...options });
+
+/**
+ * Transition Task
+ */
+export const transitionTaskV1TasksTaskIdTransitionPost = <ThrowOnError extends boolean = false>(options: Options<TransitionTaskV1TasksTaskIdTransitionPostData, ThrowOnError>): RequestResult<TransitionTaskV1TasksTaskIdTransitionPostResponses, TransitionTaskV1TasksTaskIdTransitionPostErrors, ThrowOnError> => (options.client ?? client).post<TransitionTaskV1TasksTaskIdTransitionPostResponses, TransitionTaskV1TasksTaskIdTransitionPostErrors, ThrowOnError>({
+    url: '/v1/tasks/{task_id}/transition',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});

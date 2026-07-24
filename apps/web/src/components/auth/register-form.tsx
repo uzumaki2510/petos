@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
@@ -20,7 +19,6 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 export function RegisterForm() {
-  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [isPending, setIsPending] = useState(false);
 
@@ -49,11 +47,9 @@ export function RegisterForm() {
         throw new Error(errData.error?.message || 'Registration failed');
       }
 
-      router.push('/app');
-      router.refresh();
+      window.location.href = '/app';
     } catch (err: any) {
       setError(err.message);
-    } finally {
       setIsPending(false);
     }
   };

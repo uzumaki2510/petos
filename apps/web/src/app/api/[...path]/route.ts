@@ -4,12 +4,38 @@ import { isRouteAllowed } from "@/lib/api/route-map";
 const BACKEND_URL = process.env.API_INTERNAL_URL || process.env.API_URL || "http://localhost:8000";
 const BFF_SECRET = process.env.BFF_INTERNAL_SECRET || "default_bff_secret_for_local_dev";
 
+const ALLOWED_TASK_QUERY_PARAMS = new Set([
+  "status",
+  "priority",
+  "assigned_to",
+  "label",
+  "search",
+  "due_before",
+  "due_after",
+  "include_archived",
+  "sort",
+  "limit",
+  "offset",
+]);
+
 async function handleProxy(req: NextRequest) {
-  const { pathname, search } = new URL(req.url);
+  const { pathname, searchParams, search } = new URL(req.url);
 
   // Reject unknown paths / unsupported methods
   if (!isRouteAllowed(pathname, req.method)) {
     return NextResponse.json({ error: { code: "not_found", message: "Not found", request_id: "bff" } }, { status: 404 });
+  }
+
+  // Validate task query parameters if matching task list endpoint
+  if (pathname.includes("/tasks") && req.method === "GET") {
+    for (const key of Array.from(searchParams.keys())) {
+      if (!ALLOWED_TASK_QUERY_PARAMS.has(key)) {
+        return NextResponse.json(
+          { error: { code: "unprocessable_entity", message: `Unknown query parameter '${key}'`, request_id: "bff" } },
+          { status: 422 }
+        );
+      }
+    }
   }
 
   // Reject oversized bodies (> 1MB)
