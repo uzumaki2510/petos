@@ -19,17 +19,17 @@ class Session(Base, TimestampMixin):
 
     # Store both idle and absolute expirations
     expires_at: Mapped[datetime.datetime] = mapped_column(
-        DateTime(timezone=False), nullable=False, index=True
+        DateTime(timezone=True), nullable=False, index=True
     )
     absolute_expires_at: Mapped[datetime.datetime] = mapped_column(
-        DateTime(timezone=False), nullable=False
+        DateTime(timezone=True), nullable=False
     )
 
     last_seen_at: Mapped[datetime.datetime] = mapped_column(
-        DateTime(timezone=False), nullable=False
+        DateTime(timezone=True), nullable=False
     )
     revoked_at: Mapped[datetime.datetime | None] = mapped_column(
-        DateTime(timezone=False), nullable=True
+        DateTime(timezone=True), nullable=True
     )
 
     __table_args__ = (
