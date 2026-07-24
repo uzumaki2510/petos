@@ -1,7 +1,7 @@
 from typing import Optional, List, Tuple
 import uuid
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, update
+from sqlalchemy import select, update, func
 from petos_api.models.project import Project
 
 
@@ -23,18 +23,36 @@ class ProjectRepository:
         result = await self.session.execute(stmt)
         return result.scalar_one_or_none()
 
+    async def get_by_key(
+        self, organization_id: uuid.UUID, key: str
+    ) -> Optional[Project]:
+        stmt = select(Project).where(
+            Project.organization_id == organization_id, Project.key == key
+        )
+        result = await self.session.execute(stmt)
+        return result.scalar_one_or_none()
+
+    async def allocate_next_task_number(self, project_id: uuid.UUID) -> int:
+        stmt = (
+            update(Project)
+            .where(Project.id == project_id)
+            .values(next_task_number=Project.next_task_number + 1)
+            .returning(Project.next_task_number - 1)
+        )
+        result = await self.session.execute(stmt)
+        val = result.scalar_one_or_none()
+        if val is None:
+            raise ValueError(f"Project {project_id} not found")
+        return val
+
     async def get_projects_for_organization(
         self, organization_id: uuid.UUID, limit: int = 20, offset: int = 0
     ) -> Tuple[List[Project], int]:
-        from sqlalchemy import func
-
-        # Total count
         count_stmt = select(func.count(Project.id)).where(
             Project.organization_id == organization_id
         )
         total = await self.session.scalar(count_stmt) or 0
 
-        # Paginated items
         stmt = (
             select(Project)
             .where(Project.organization_id == organization_id)

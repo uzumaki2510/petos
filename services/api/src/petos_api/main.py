@@ -63,6 +63,9 @@ def create_app() -> FastAPI:
     from petos_api.api.v1.auth import router as auth_router
     from petos_api.api.v1.organizations import router as organizations_router
     from petos_api.api.v1.projects import router as projects_router
+    from petos_api.api.v1.tasks import router as tasks_router
+    from petos_api.api.v1.labels import router as labels_router
+    from petos_api.api.v1.comments import router as comments_router
 
     app.include_router(health_router, prefix="/health", tags=["health"])
     app.include_router(auth_router, prefix="/v1/auth", tags=["auth"])
@@ -70,6 +73,9 @@ def create_app() -> FastAPI:
         organizations_router, prefix="/v1/organizations", tags=["organizations"]
     )
     app.include_router(projects_router, prefix="/v1", tags=["projects"])
+    app.include_router(tasks_router, prefix="", tags=["tasks"])
+    app.include_router(labels_router, prefix="", tags=["labels"])
+    app.include_router(comments_router, prefix="", tags=["comments"])
 
     return app
 

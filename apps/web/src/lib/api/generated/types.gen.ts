@@ -5,6 +5,180 @@ export type ClientOptions = {
 };
 
 /**
+ * ActivityResponse
+ */
+export type ActivityResponse = {
+    /**
+     * Actor Id
+     */
+    actor_id: string;
+    /**
+     * Created At
+     */
+    created_at: string;
+    /**
+     * Event Type
+     */
+    event_type: string;
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Metadata
+     */
+    metadata?: {
+        [key: string]: unknown;
+    };
+    /**
+     * New Value
+     */
+    new_value?: string | null;
+    /**
+     * Previous Value
+     */
+    previous_value?: string | null;
+    /**
+     * Task Id
+     */
+    task_id: string;
+};
+
+/**
+ * BoardColumnResponse
+ */
+export type BoardColumnResponse = {
+    /**
+     * Has More
+     */
+    has_more: boolean;
+    /**
+     * Items
+     */
+    items: Array<TaskResponse>;
+    /**
+     * Returned Count
+     */
+    returned_count: number;
+    /**
+     * Status
+     */
+    status: string;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * BoardViewResponse
+ */
+export type BoardViewResponse = {
+    /**
+     * Columns
+     */
+    columns: Array<BoardColumnResponse>;
+};
+
+/**
+ * CommentCreateRequest
+ */
+export type CommentCreateRequest = {
+    /**
+     * Body
+     */
+    body: string;
+};
+
+/**
+ * CommentResponse
+ */
+export type CommentResponse = {
+    /**
+     * Author Id
+     */
+    author_id: string;
+    /**
+     * Body
+     */
+    body: string;
+    /**
+     * Created At
+     */
+    created_at: string;
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Task Id
+     */
+    task_id: string;
+    /**
+     * Updated At
+     */
+    updated_at: string;
+    /**
+     * Version
+     */
+    version: number;
+};
+
+/**
+ * CommentUpdateRequest
+ */
+export type CommentUpdateRequest = {
+    /**
+     * Body
+     */
+    body: string;
+    /**
+     * Expected Version
+     */
+    expected_version: number;
+};
+
+/**
+ * DependencyCreateRequest
+ */
+export type DependencyCreateRequest = {
+    /**
+     * Depends On Task Id
+     */
+    depends_on_task_id: string;
+};
+
+/**
+ * DependencyResponse
+ */
+export type DependencyResponse = {
+    /**
+     * Created At
+     */
+    created_at: string;
+    /**
+     * Created By
+     */
+    created_by: string;
+    /**
+     * Depends On Display Id
+     */
+    depends_on_display_id: string;
+    /**
+     * Depends On Task Id
+     */
+    depends_on_task_id: string;
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Task Id
+     */
+    task_id: string;
+};
+
+/**
  * HTTPValidationError
  */
 export type HttpValidationError = {
@@ -12,6 +186,76 @@ export type HttpValidationError = {
      * Detail
      */
     detail?: Array<ValidationError>;
+};
+
+/**
+ * LabelCreateRequest
+ */
+export type LabelCreateRequest = {
+    /**
+     * Color
+     */
+    color?: string;
+    /**
+     * Name
+     */
+    name: string;
+};
+
+/**
+ * LabelResponse
+ */
+export type LabelResponse = {
+    /**
+     * Color
+     */
+    color: string;
+    /**
+     * Created At
+     */
+    created_at: string;
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Name
+     */
+    name: string;
+    /**
+     * Project Id
+     */
+    project_id: string;
+    /**
+     * Slug
+     */
+    slug: string;
+    /**
+     * Updated At
+     */
+    updated_at: string;
+    /**
+     * Version
+     */
+    version: number;
+};
+
+/**
+ * LabelUpdateRequest
+ */
+export type LabelUpdateRequest = {
+    /**
+     * Color
+     */
+    color: string;
+    /**
+     * Expected Version
+     */
+    expected_version: number;
+    /**
+     * Name
+     */
+    name: string;
 };
 
 /**
@@ -26,6 +270,28 @@ export type LoginRequest = {
      * Password
      */
     password: string;
+};
+
+/**
+ * OrganizationMemberResponse
+ */
+export type OrganizationMemberResponse = {
+    /**
+     * Display Name
+     */
+    display_name: string;
+    /**
+     * Role
+     */
+    role: string;
+    /**
+     * Status
+     */
+    status: string;
+    /**
+     * User Id
+     */
+    user_id: string;
 };
 
 /**
@@ -62,6 +328,94 @@ export type OrganizationUpdateRequest = {
      * Name
      */
     name: string;
+};
+
+/**
+ * PaginatedActivityResponse
+ */
+export type PaginatedActivityResponse = {
+    /**
+     * Items
+     */
+    items: Array<ActivityResponse>;
+    /**
+     * Limit
+     */
+    limit: number;
+    /**
+     * Offset
+     */
+    offset: number;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * PaginatedCommentResponse
+ */
+export type PaginatedCommentResponse = {
+    /**
+     * Items
+     */
+    items: Array<CommentResponse>;
+    /**
+     * Limit
+     */
+    limit: number;
+    /**
+     * Offset
+     */
+    offset: number;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * PaginatedLabelResponse
+ */
+export type PaginatedLabelResponse = {
+    /**
+     * Items
+     */
+    items: Array<LabelResponse>;
+    /**
+     * Limit
+     */
+    limit: number;
+    /**
+     * Offset
+     */
+    offset: number;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
+ * PaginatedOrganizationMemberResponse
+ */
+export type PaginatedOrganizationMemberResponse = {
+    /**
+     * Items
+     */
+    items: Array<OrganizationMemberResponse>;
+    /**
+     * Limit
+     */
+    limit: number;
+    /**
+     * Offset
+     */
+    offset: number;
+    /**
+     * Total
+     */
+    total: number;
 };
 
 /**
@@ -109,6 +463,28 @@ export type PaginatedProjectResponse = {
 };
 
 /**
+ * PaginatedTaskResponse
+ */
+export type PaginatedTaskResponse = {
+    /**
+     * Items
+     */
+    items: Array<TaskResponse>;
+    /**
+     * Limit
+     */
+    limit: number;
+    /**
+     * Offset
+     */
+    offset: number;
+    /**
+     * Total
+     */
+    total: number;
+};
+
+/**
  * ProjectCreateRequest
  */
 export type ProjectCreateRequest = {
@@ -116,6 +492,12 @@ export type ProjectCreateRequest = {
      * Description
      */
     description?: string | null;
+    /**
+     * Key
+     *
+     * Immutable 2-10 char project key e.g. PET
+     */
+    key?: string | null;
     /**
      * Name
      */
@@ -138,6 +520,10 @@ export type ProjectResponse = {
      * Id
      */
     id: string;
+    /**
+     * Key
+     */
+    key: string;
     /**
      * Name
      */
@@ -190,6 +576,196 @@ export type RegisterRequest = {
      * Password
      */
     password: string;
+};
+
+/**
+ * TaskArchiveRequest
+ */
+export type TaskArchiveRequest = {
+    /**
+     * Expected Version
+     */
+    expected_version: number;
+    /**
+     * Reason
+     */
+    reason?: string | null;
+};
+
+/**
+ * TaskCreateRequest
+ */
+export type TaskCreateRequest = {
+    /**
+     * Acceptance Criteria
+     */
+    acceptance_criteria?: string | null;
+    /**
+     * Assigned To
+     */
+    assigned_to?: string | null;
+    /**
+     * Description
+     */
+    description?: string | null;
+    /**
+     * Due At
+     */
+    due_at?: string | null;
+    /**
+     * Label Ids
+     */
+    label_ids?: Array<string>;
+    /**
+     * Priority
+     */
+    priority?: string;
+    /**
+     * Title
+     */
+    title: string;
+};
+
+/**
+ * TaskResponse
+ */
+export type TaskResponse = {
+    /**
+     * Acceptance Criteria
+     */
+    acceptance_criteria?: string | null;
+    /**
+     * Archived At
+     */
+    archived_at?: string | null;
+    /**
+     * Assigned To
+     */
+    assigned_to?: string | null;
+    /**
+     * Completed At
+     */
+    completed_at?: string | null;
+    /**
+     * Created At
+     */
+    created_at: string;
+    /**
+     * Created By
+     */
+    created_by: string;
+    /**
+     * Description
+     */
+    description?: string | null;
+    /**
+     * Display Id
+     */
+    display_id: string;
+    /**
+     * Due At
+     */
+    due_at?: string | null;
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Labels
+     */
+    labels?: Array<LabelResponse>;
+    /**
+     * Priority
+     */
+    priority: string;
+    /**
+     * Project Id
+     */
+    project_id: string;
+    /**
+     * Project Key
+     */
+    project_key: string;
+    /**
+     * Started At
+     */
+    started_at?: string | null;
+    /**
+     * Status
+     */
+    status: string;
+    /**
+     * Task Number
+     */
+    task_number: number;
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Unresolved Dependency Count
+     */
+    unresolved_dependency_count?: number;
+    /**
+     * Updated At
+     */
+    updated_at: string;
+    /**
+     * Version
+     */
+    version: number;
+};
+
+/**
+ * TaskTransitionRequest
+ */
+export type TaskTransitionRequest = {
+    /**
+     * Expected Version
+     */
+    expected_version: number;
+    /**
+     * Reason
+     */
+    reason?: string | null;
+    /**
+     * Target Status
+     */
+    target_status: string;
+};
+
+/**
+ * TaskUpdateRequest
+ */
+export type TaskUpdateRequest = {
+    /**
+     * Acceptance Criteria
+     */
+    acceptance_criteria?: string | null;
+    /**
+     * Assigned To
+     */
+    assigned_to?: string | null;
+    /**
+     * Description
+     */
+    description?: string | null;
+    /**
+     * Due At
+     */
+    due_at?: string | null;
+    /**
+     * Expected Version
+     */
+    expected_version: number;
+    /**
+     * Priority
+     */
+    priority?: string | null;
+    /**
+     * Title
+     */
+    title?: string | null;
 };
 
 /**
@@ -360,6 +936,36 @@ export type RegisterV1AuthRegisterPostResponses = {
 
 export type RegisterV1AuthRegisterPostResponse = RegisterV1AuthRegisterPostResponses[keyof RegisterV1AuthRegisterPostResponses];
 
+export type UpdateLabelV1LabelsLabelIdPatchData = {
+    body: LabelUpdateRequest;
+    path: {
+        /**
+         * Label Id
+         */
+        label_id: string;
+    };
+    query?: never;
+    url: '/v1/labels/{label_id}';
+};
+
+export type UpdateLabelV1LabelsLabelIdPatchErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UpdateLabelV1LabelsLabelIdPatchError = UpdateLabelV1LabelsLabelIdPatchErrors[keyof UpdateLabelV1LabelsLabelIdPatchErrors];
+
+export type UpdateLabelV1LabelsLabelIdPatchResponses = {
+    /**
+     * Successful Response
+     */
+    200: LabelResponse;
+};
+
+export type UpdateLabelV1LabelsLabelIdPatchResponse = UpdateLabelV1LabelsLabelIdPatchResponses[keyof UpdateLabelV1LabelsLabelIdPatchResponses];
+
 export type GetOrganizationsV1OrganizationsGetData = {
     body?: never;
     path?: never;
@@ -453,6 +1059,45 @@ export type UpdateOrganizationV1OrganizationsOrganizationIdPatchResponses = {
 };
 
 export type UpdateOrganizationV1OrganizationsOrganizationIdPatchResponse = UpdateOrganizationV1OrganizationsOrganizationIdPatchResponses[keyof UpdateOrganizationV1OrganizationsOrganizationIdPatchResponses];
+
+export type GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetData = {
+    body?: never;
+    path: {
+        /**
+         * Organization Id
+         */
+        organization_id: string;
+    };
+    query?: {
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/v1/organizations/{organization_id}/members';
+};
+
+export type GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetError = GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetErrors[keyof GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetErrors];
+
+export type GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: PaginatedOrganizationMemberResponse;
+};
+
+export type GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetResponse = GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetResponses[keyof GetOrganizationMembersV1OrganizationsOrganizationIdMembersGetResponses];
 
 export type GetProjectsV1OrganizationsOrganizationIdProjectsGetData = {
     body?: never;
@@ -612,3 +1257,631 @@ export type ArchiveProjectV1ProjectsProjectIdArchivePostResponses = {
 };
 
 export type ArchiveProjectV1ProjectsProjectIdArchivePostResponse = ArchiveProjectV1ProjectsProjectIdArchivePostResponses[keyof ArchiveProjectV1ProjectsProjectIdArchivePostResponses];
+
+export type GetBoardViewV1ProjectsProjectIdBoardGetData = {
+    body?: never;
+    path: {
+        /**
+         * Project Id
+         */
+        project_id: string;
+    };
+    query?: never;
+    url: '/v1/projects/{project_id}/board';
+};
+
+export type GetBoardViewV1ProjectsProjectIdBoardGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetBoardViewV1ProjectsProjectIdBoardGetError = GetBoardViewV1ProjectsProjectIdBoardGetErrors[keyof GetBoardViewV1ProjectsProjectIdBoardGetErrors];
+
+export type GetBoardViewV1ProjectsProjectIdBoardGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: BoardViewResponse;
+};
+
+export type GetBoardViewV1ProjectsProjectIdBoardGetResponse = GetBoardViewV1ProjectsProjectIdBoardGetResponses[keyof GetBoardViewV1ProjectsProjectIdBoardGetResponses];
+
+export type ListLabelsV1ProjectsProjectIdLabelsGetData = {
+    body?: never;
+    path: {
+        /**
+         * Project Id
+         */
+        project_id: string;
+    };
+    query?: {
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/v1/projects/{project_id}/labels';
+};
+
+export type ListLabelsV1ProjectsProjectIdLabelsGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ListLabelsV1ProjectsProjectIdLabelsGetError = ListLabelsV1ProjectsProjectIdLabelsGetErrors[keyof ListLabelsV1ProjectsProjectIdLabelsGetErrors];
+
+export type ListLabelsV1ProjectsProjectIdLabelsGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: PaginatedLabelResponse;
+};
+
+export type ListLabelsV1ProjectsProjectIdLabelsGetResponse = ListLabelsV1ProjectsProjectIdLabelsGetResponses[keyof ListLabelsV1ProjectsProjectIdLabelsGetResponses];
+
+export type CreateLabelV1ProjectsProjectIdLabelsPostData = {
+    body: LabelCreateRequest;
+    path: {
+        /**
+         * Project Id
+         */
+        project_id: string;
+    };
+    query?: never;
+    url: '/v1/projects/{project_id}/labels';
+};
+
+export type CreateLabelV1ProjectsProjectIdLabelsPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type CreateLabelV1ProjectsProjectIdLabelsPostError = CreateLabelV1ProjectsProjectIdLabelsPostErrors[keyof CreateLabelV1ProjectsProjectIdLabelsPostErrors];
+
+export type CreateLabelV1ProjectsProjectIdLabelsPostResponses = {
+    /**
+     * Successful Response
+     */
+    201: LabelResponse;
+};
+
+export type CreateLabelV1ProjectsProjectIdLabelsPostResponse = CreateLabelV1ProjectsProjectIdLabelsPostResponses[keyof CreateLabelV1ProjectsProjectIdLabelsPostResponses];
+
+export type ListTasksV1ProjectsProjectIdTasksGetData = {
+    body?: never;
+    path: {
+        /**
+         * Project Id
+         */
+        project_id: string;
+    };
+    query?: {
+        /**
+         * Status
+         *
+         * Comma-separated or repeated status values
+         */
+        status?: string | null;
+        /**
+         * Priority
+         */
+        priority?: string | null;
+        /**
+         * Assigned To
+         */
+        assigned_to?: string | null;
+        /**
+         * Label
+         */
+        label?: string | null;
+        /**
+         * Search
+         */
+        search?: string | null;
+        /**
+         * Due Before
+         */
+        due_before?: string | null;
+        /**
+         * Due After
+         */
+        due_after?: string | null;
+        /**
+         * Include Archived
+         */
+        include_archived?: boolean;
+        /**
+         * Sort
+         */
+        sort?: string;
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/v1/projects/{project_id}/tasks';
+};
+
+export type ListTasksV1ProjectsProjectIdTasksGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ListTasksV1ProjectsProjectIdTasksGetError = ListTasksV1ProjectsProjectIdTasksGetErrors[keyof ListTasksV1ProjectsProjectIdTasksGetErrors];
+
+export type ListTasksV1ProjectsProjectIdTasksGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: PaginatedTaskResponse;
+};
+
+export type ListTasksV1ProjectsProjectIdTasksGetResponse = ListTasksV1ProjectsProjectIdTasksGetResponses[keyof ListTasksV1ProjectsProjectIdTasksGetResponses];
+
+export type CreateTaskV1ProjectsProjectIdTasksPostData = {
+    body: TaskCreateRequest;
+    path: {
+        /**
+         * Project Id
+         */
+        project_id: string;
+    };
+    query?: never;
+    url: '/v1/projects/{project_id}/tasks';
+};
+
+export type CreateTaskV1ProjectsProjectIdTasksPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type CreateTaskV1ProjectsProjectIdTasksPostError = CreateTaskV1ProjectsProjectIdTasksPostErrors[keyof CreateTaskV1ProjectsProjectIdTasksPostErrors];
+
+export type CreateTaskV1ProjectsProjectIdTasksPostResponses = {
+    /**
+     * Successful Response
+     */
+    201: TaskResponse;
+};
+
+export type CreateTaskV1ProjectsProjectIdTasksPostResponse = CreateTaskV1ProjectsProjectIdTasksPostResponses[keyof CreateTaskV1ProjectsProjectIdTasksPostResponses];
+
+export type UpdateCommentV1TaskCommentsCommentIdPatchData = {
+    body: CommentUpdateRequest;
+    path: {
+        /**
+         * Comment Id
+         */
+        comment_id: string;
+    };
+    query?: never;
+    url: '/v1/task-comments/{comment_id}';
+};
+
+export type UpdateCommentV1TaskCommentsCommentIdPatchErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UpdateCommentV1TaskCommentsCommentIdPatchError = UpdateCommentV1TaskCommentsCommentIdPatchErrors[keyof UpdateCommentV1TaskCommentsCommentIdPatchErrors];
+
+export type UpdateCommentV1TaskCommentsCommentIdPatchResponses = {
+    /**
+     * Successful Response
+     */
+    200: CommentResponse;
+};
+
+export type UpdateCommentV1TaskCommentsCommentIdPatchResponse = UpdateCommentV1TaskCommentsCommentIdPatchResponses[keyof UpdateCommentV1TaskCommentsCommentIdPatchResponses];
+
+export type GetTaskV1TasksTaskIdGetData = {
+    body?: never;
+    path: {
+        /**
+         * Task Id
+         */
+        task_id: string;
+    };
+    query?: never;
+    url: '/v1/tasks/{task_id}';
+};
+
+export type GetTaskV1TasksTaskIdGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type GetTaskV1TasksTaskIdGetError = GetTaskV1TasksTaskIdGetErrors[keyof GetTaskV1TasksTaskIdGetErrors];
+
+export type GetTaskV1TasksTaskIdGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: TaskResponse;
+};
+
+export type GetTaskV1TasksTaskIdGetResponse = GetTaskV1TasksTaskIdGetResponses[keyof GetTaskV1TasksTaskIdGetResponses];
+
+export type UpdateTaskV1TasksTaskIdPatchData = {
+    body: TaskUpdateRequest;
+    path: {
+        /**
+         * Task Id
+         */
+        task_id: string;
+    };
+    query?: never;
+    url: '/v1/tasks/{task_id}';
+};
+
+export type UpdateTaskV1TasksTaskIdPatchErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type UpdateTaskV1TasksTaskIdPatchError = UpdateTaskV1TasksTaskIdPatchErrors[keyof UpdateTaskV1TasksTaskIdPatchErrors];
+
+export type UpdateTaskV1TasksTaskIdPatchResponses = {
+    /**
+     * Successful Response
+     */
+    200: TaskResponse;
+};
+
+export type UpdateTaskV1TasksTaskIdPatchResponse = UpdateTaskV1TasksTaskIdPatchResponses[keyof UpdateTaskV1TasksTaskIdPatchResponses];
+
+export type ListActivitiesV1TasksTaskIdActivityGetData = {
+    body?: never;
+    path: {
+        /**
+         * Task Id
+         */
+        task_id: string;
+    };
+    query?: {
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/v1/tasks/{task_id}/activity';
+};
+
+export type ListActivitiesV1TasksTaskIdActivityGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ListActivitiesV1TasksTaskIdActivityGetError = ListActivitiesV1TasksTaskIdActivityGetErrors[keyof ListActivitiesV1TasksTaskIdActivityGetErrors];
+
+export type ListActivitiesV1TasksTaskIdActivityGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: PaginatedActivityResponse;
+};
+
+export type ListActivitiesV1TasksTaskIdActivityGetResponse = ListActivitiesV1TasksTaskIdActivityGetResponses[keyof ListActivitiesV1TasksTaskIdActivityGetResponses];
+
+export type ArchiveTaskV1TasksTaskIdArchivePostData = {
+    body: TaskArchiveRequest;
+    path: {
+        /**
+         * Task Id
+         */
+        task_id: string;
+    };
+    query?: never;
+    url: '/v1/tasks/{task_id}/archive';
+};
+
+export type ArchiveTaskV1TasksTaskIdArchivePostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ArchiveTaskV1TasksTaskIdArchivePostError = ArchiveTaskV1TasksTaskIdArchivePostErrors[keyof ArchiveTaskV1TasksTaskIdArchivePostErrors];
+
+export type ArchiveTaskV1TasksTaskIdArchivePostResponses = {
+    /**
+     * Successful Response
+     */
+    200: TaskResponse;
+};
+
+export type ArchiveTaskV1TasksTaskIdArchivePostResponse = ArchiveTaskV1TasksTaskIdArchivePostResponses[keyof ArchiveTaskV1TasksTaskIdArchivePostResponses];
+
+export type ListCommentsV1TasksTaskIdCommentsGetData = {
+    body?: never;
+    path: {
+        /**
+         * Task Id
+         */
+        task_id: string;
+    };
+    query?: {
+        /**
+         * Limit
+         */
+        limit?: number;
+        /**
+         * Offset
+         */
+        offset?: number;
+    };
+    url: '/v1/tasks/{task_id}/comments';
+};
+
+export type ListCommentsV1TasksTaskIdCommentsGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ListCommentsV1TasksTaskIdCommentsGetError = ListCommentsV1TasksTaskIdCommentsGetErrors[keyof ListCommentsV1TasksTaskIdCommentsGetErrors];
+
+export type ListCommentsV1TasksTaskIdCommentsGetResponses = {
+    /**
+     * Successful Response
+     */
+    200: PaginatedCommentResponse;
+};
+
+export type ListCommentsV1TasksTaskIdCommentsGetResponse = ListCommentsV1TasksTaskIdCommentsGetResponses[keyof ListCommentsV1TasksTaskIdCommentsGetResponses];
+
+export type AddCommentV1TasksTaskIdCommentsPostData = {
+    body: CommentCreateRequest;
+    path: {
+        /**
+         * Task Id
+         */
+        task_id: string;
+    };
+    query?: never;
+    url: '/v1/tasks/{task_id}/comments';
+};
+
+export type AddCommentV1TasksTaskIdCommentsPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type AddCommentV1TasksTaskIdCommentsPostError = AddCommentV1TasksTaskIdCommentsPostErrors[keyof AddCommentV1TasksTaskIdCommentsPostErrors];
+
+export type AddCommentV1TasksTaskIdCommentsPostResponses = {
+    /**
+     * Successful Response
+     */
+    201: CommentResponse;
+};
+
+export type AddCommentV1TasksTaskIdCommentsPostResponse = AddCommentV1TasksTaskIdCommentsPostResponses[keyof AddCommentV1TasksTaskIdCommentsPostResponses];
+
+export type ListDependenciesV1TasksTaskIdDependenciesGetData = {
+    body?: never;
+    path: {
+        /**
+         * Task Id
+         */
+        task_id: string;
+    };
+    query?: never;
+    url: '/v1/tasks/{task_id}/dependencies';
+};
+
+export type ListDependenciesV1TasksTaskIdDependenciesGetErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type ListDependenciesV1TasksTaskIdDependenciesGetError = ListDependenciesV1TasksTaskIdDependenciesGetErrors[keyof ListDependenciesV1TasksTaskIdDependenciesGetErrors];
+
+export type ListDependenciesV1TasksTaskIdDependenciesGetResponses = {
+    /**
+     * Response List Dependencies V1 Tasks  Task Id  Dependencies Get
+     *
+     * Successful Response
+     */
+    200: Array<DependencyResponse>;
+};
+
+export type ListDependenciesV1TasksTaskIdDependenciesGetResponse = ListDependenciesV1TasksTaskIdDependenciesGetResponses[keyof ListDependenciesV1TasksTaskIdDependenciesGetResponses];
+
+export type AddDependencyV1TasksTaskIdDependenciesPostData = {
+    body: DependencyCreateRequest;
+    path: {
+        /**
+         * Task Id
+         */
+        task_id: string;
+    };
+    query?: never;
+    url: '/v1/tasks/{task_id}/dependencies';
+};
+
+export type AddDependencyV1TasksTaskIdDependenciesPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type AddDependencyV1TasksTaskIdDependenciesPostError = AddDependencyV1TasksTaskIdDependenciesPostErrors[keyof AddDependencyV1TasksTaskIdDependenciesPostErrors];
+
+export type AddDependencyV1TasksTaskIdDependenciesPostResponses = {
+    /**
+     * Successful Response
+     */
+    201: DependencyResponse;
+};
+
+export type AddDependencyV1TasksTaskIdDependenciesPostResponse = AddDependencyV1TasksTaskIdDependenciesPostResponses[keyof AddDependencyV1TasksTaskIdDependenciesPostResponses];
+
+export type RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteData = {
+    body?: never;
+    path: {
+        /**
+         * Task Id
+         */
+        task_id: string;
+        /**
+         * Dependency Id
+         */
+        dependency_id: string;
+    };
+    query?: never;
+    url: '/v1/tasks/{task_id}/dependencies/{dependency_id}';
+};
+
+export type RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteError = RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteErrors[keyof RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteErrors];
+
+export type RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteResponses = {
+    /**
+     * Successful Response
+     */
+    200: TaskResponse;
+};
+
+export type RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteResponse = RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteResponses[keyof RemoveDependencyV1TasksTaskIdDependenciesDependencyIdDeleteResponses];
+
+export type RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteData = {
+    body?: never;
+    path: {
+        /**
+         * Task Id
+         */
+        task_id: string;
+        /**
+         * Label Id
+         */
+        label_id: string;
+    };
+    query?: never;
+    url: '/v1/tasks/{task_id}/labels/{label_id}';
+};
+
+export type RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteError = RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteErrors[keyof RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteErrors];
+
+export type RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteResponses = {
+    /**
+     * Successful Response
+     */
+    200: TaskResponse;
+};
+
+export type RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteResponse = RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteResponses[keyof RemoveTaskLabelV1TasksTaskIdLabelsLabelIdDeleteResponses];
+
+export type AddTaskLabelV1TasksTaskIdLabelsLabelIdPostData = {
+    body?: never;
+    path: {
+        /**
+         * Task Id
+         */
+        task_id: string;
+        /**
+         * Label Id
+         */
+        label_id: string;
+    };
+    query?: never;
+    url: '/v1/tasks/{task_id}/labels/{label_id}';
+};
+
+export type AddTaskLabelV1TasksTaskIdLabelsLabelIdPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type AddTaskLabelV1TasksTaskIdLabelsLabelIdPostError = AddTaskLabelV1TasksTaskIdLabelsLabelIdPostErrors[keyof AddTaskLabelV1TasksTaskIdLabelsLabelIdPostErrors];
+
+export type AddTaskLabelV1TasksTaskIdLabelsLabelIdPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: TaskResponse;
+};
+
+export type AddTaskLabelV1TasksTaskIdLabelsLabelIdPostResponse = AddTaskLabelV1TasksTaskIdLabelsLabelIdPostResponses[keyof AddTaskLabelV1TasksTaskIdLabelsLabelIdPostResponses];
+
+export type TransitionTaskV1TasksTaskIdTransitionPostData = {
+    body: TaskTransitionRequest;
+    path: {
+        /**
+         * Task Id
+         */
+        task_id: string;
+    };
+    query?: never;
+    url: '/v1/tasks/{task_id}/transition';
+};
+
+export type TransitionTaskV1TasksTaskIdTransitionPostErrors = {
+    /**
+     * Validation Error
+     */
+    422: HttpValidationError;
+};
+
+export type TransitionTaskV1TasksTaskIdTransitionPostError = TransitionTaskV1TasksTaskIdTransitionPostErrors[keyof TransitionTaskV1TasksTaskIdTransitionPostErrors];
+
+export type TransitionTaskV1TasksTaskIdTransitionPostResponses = {
+    /**
+     * Successful Response
+     */
+    200: TaskResponse;
+};
+
+export type TransitionTaskV1TasksTaskIdTransitionPostResponse = TransitionTaskV1TasksTaskIdTransitionPostResponses[keyof TransitionTaskV1TasksTaskIdTransitionPostResponses];

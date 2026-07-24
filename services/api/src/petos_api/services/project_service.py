@@ -42,6 +42,23 @@ class ProjectService:
             base_slug = "project"
         return f"{base_slug}-{uuid.uuid4().hex[:6]}"
 
+    async def _generate_default_key(self, org_id: uuid.UUID, name: str) -> str:
+        cleaned = re.sub(r"[^A-Z0-9]", "", name.upper())
+        if not cleaned or not cleaned[0].isalpha():
+            cleaned = "PET" + cleaned
+        base_key = cleaned[:10]
+        if len(base_key) < 2:
+            base_key = base_key + "X"
+
+        candidate = base_key
+        counter = 1
+        while await self.project_repo.get_by_key(org_id, candidate):
+            suffix = str(counter)
+            max_base = 10 - len(suffix)
+            candidate = base_key[:max_base] + suffix
+            counter += 1
+        return candidate
+
     async def get_projects(
         self, user_id: uuid.UUID, org_id: uuid.UUID, limit: int = 20, offset: int = 0
     ) -> Tuple[List[ProjectResponse], int]:
@@ -56,6 +73,7 @@ class ProjectService:
                 organization_id=p.organization_id,
                 name=p.name,
                 slug=p.slug,
+                key=p.key,
                 description=p.description,
                 status=p.status,
                 created_at=p.created_at,
@@ -81,6 +99,7 @@ class ProjectService:
             organization_id=p.organization_id,
             name=p.name,
             slug=p.slug,
+            key=p.key,
             description=p.description,
             status=p.status,
             created_at=p.created_at,
@@ -94,11 +113,31 @@ class ProjectService:
             user_id, org_id, required_roles=["owner", "admin", "member"]
         )
 
+        if req.key:
+            key_val = req.key.upper()
+            if not re.match(r"^[A-Z][A-Z0-9]{1,9}$", key_val):
+                raise AppError(
+                    status_code=422,
+                    code="unprocessable_entity",
+                    message="Project key must be 2-10 uppercase alphanumeric characters starting with a letter",
+                )
+            existing = await self.project_repo.get_by_key(org_id, key_val)
+            if existing:
+                raise AppError(
+                    status_code=409,
+                    code="duplicate_key",
+                    message=f"Project key '{key_val}' already exists in this organization",
+                )
+        else:
+            key_val = await self._generate_default_key(org_id, req.name)
+
         p = Project(
             id=uuid.uuid4(),
             organization_id=org_id,
             name=req.name,
             slug=self._generate_slug(req.name),
+            key=key_val,
+            next_task_number=1,
             description=req.description,
             status="active",
             created_by=user_id,
@@ -112,6 +151,7 @@ class ProjectService:
             organization_id=p.organization_id,
             name=p.name,
             slug=p.slug,
+            key=p.key,
             description=p.description,
             status=p.status,
             created_at=p.created_at,
@@ -147,6 +187,7 @@ class ProjectService:
             organization_id=p.organization_id,
             name=p.name,
             slug=p.slug,
+            key=p.key,
             description=p.description,
             status=p.status,
             created_at=p.created_at,
@@ -176,6 +217,7 @@ class ProjectService:
             organization_id=p.organization_id,
             name=p.name,
             slug=p.slug,
+            key=p.key,
             description=p.description,
             status=p.status,
             created_at=p.created_at,

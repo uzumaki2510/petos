@@ -24,12 +24,40 @@ export const STATIC_ROUTES: Record<string, readonly string[]> = {
 const DYNAMIC_ROUTES: [RegExp, readonly string[]][] = [
   // GET|PATCH /api/v1/organizations/{uuid}
   [new RegExp(`^\\/api\\/v1\\/organizations\\/${UUID_RE}$`), ["GET", "PATCH"]],
+  // GET /api/v1/organizations/{uuid}/members
+  [new RegExp(`^\\/api\\/v1\\/organizations\\/${UUID_RE}\\/members$`), ["GET"]],
   // GET|POST /api/v1/organizations/{uuid}/projects
   [new RegExp(`^\\/api\\/v1\\/organizations\\/${UUID_RE}\\/projects$`), ["GET", "POST"]],
   // GET|PATCH /api/v1/projects/{uuid}
   [new RegExp(`^\\/api\\/v1\\/projects\\/${UUID_RE}$`), ["GET", "PATCH"]],
   // POST /api/v1/projects/{uuid}/archive
   [new RegExp(`^\\/api\\/v1\\/projects\\/${UUID_RE}\\/archive$`), ["POST"]],
+  // GET|POST /api/v1/projects/{uuid}/tasks
+  [new RegExp(`^\\/api\\/v1\\/projects\\/${UUID_RE}\\/tasks$`), ["GET", "POST"]],
+  // GET /api/v1/projects/{uuid}/board
+  [new RegExp(`^\\/api\\/v1\\/projects\\/${UUID_RE}\\/board$`), ["GET"]],
+  // GET|PATCH /api/v1/tasks/{uuid}
+  [new RegExp(`^\\/api\\/v1\\/tasks\\/${UUID_RE}$`), ["GET", "PATCH"]],
+  // POST /api/v1/tasks/{uuid}/transition
+  [new RegExp(`^\\/api\\/v1\\/tasks\\/${UUID_RE}\\/transition$`), ["POST"]],
+  // POST /api/v1/tasks/{uuid}/archive
+  [new RegExp(`^\\/api\\/v1\\/tasks\\/${UUID_RE}\\/archive$`), ["POST"]],
+  // GET|POST /api/v1/tasks/{uuid}/comments
+  [new RegExp(`^\\/api\\/v1\\/tasks\\/${UUID_RE}\\/comments$`), ["GET", "POST"]],
+  // PATCH /api/v1/task-comments/{uuid}
+  [new RegExp(`^\\/api\\/v1\\/task-comments\\/${UUID_RE}$`), ["PATCH"]],
+  // GET|POST /api/v1/projects/{uuid}/labels
+  [new RegExp(`^\\/api\\/v1\\/projects\\/${UUID_RE}\\/labels$`), ["GET", "POST"]],
+  // PATCH /api/v1/labels/{uuid}
+  [new RegExp(`^\\/api\\/v1\\/labels\\/${UUID_RE}$`), ["PATCH"]],
+  // POST|DELETE /api/v1/tasks/{uuid}/labels/{uuid}
+  [new RegExp(`^\\/api\\/v1\\/tasks\\/${UUID_RE}\\/labels\\/${UUID_RE}$`), ["POST", "DELETE"]],
+  // GET|POST /api/v1/tasks/{uuid}/dependencies
+  [new RegExp(`^\\/api\\/v1\\/tasks\\/${UUID_RE}\\/dependencies$`), ["GET", "POST"]],
+  // DELETE /api/v1/tasks/{uuid}/dependencies/{uuid}
+  [new RegExp(`^\\/api\\/v1\\/tasks\\/${UUID_RE}\\/dependencies\\/${UUID_RE}$`), ["DELETE"]],
+  // GET /api/v1/tasks/{uuid}/activity
+  [new RegExp(`^\\/api\\/v1\\/tasks\\/${UUID_RE}\\/activity$`), ["GET"]],
 ];
 
 /**

@@ -2,21 +2,21 @@
 
 The development of PetOS is broken down into 15 distinct phases. We must follow this phase-by-phase approach, achieving validation and sign-off before proceeding to the next phase.
 
-## Phase 1: Project Scoping and Initial Documentation (Current)
+## Phase 1: Project Scoping and Initial Documentation (Complete)
 - Establishing core rules, product vision, PRD, architecture constraints, and roadmap.
 
-## Phase 2: Core Infrastructure & Repository Setup
+## Phase 2: Core Infrastructure & Repository Setup (Complete)
 - Initializing the monorepo.
 - Setting up the Next.js (React/TypeScript) frontend.
 - Setting up the FastAPI (Python) backend.
 - Initializing the PostgreSQL database and Redis caching layer.
 
-## Phase 3: User Accounts, Authentication, & Authorization
+## Phase 3: User Accounts, Authentication, & Authorization (Complete)
 - Implementing secure user registration and login.
-- Setting up session management.
+- Setting up server-side opaque sessions.
 
-## Phase 4: Project, Repository, and Task Management Models & APIs
-- Creating the core domain models and API endpoints for managing projects and individual tasks.
+## Phase 4: Project, Repository, and Task Management Models & APIs (Current - Complete)
+- Creating core domain models, immutable project keys, atomic task numbering, status lifecycle, optimistic concurrency control, advisory lock dependency cycle detection, comments, labels, immutable activity audit logging, BFF route proxying, and list/board frontend views.
 
 ## Phase 5: Pixel Office UI Basics
 - Implementing the 2D canvas/WebGL viewer for the pixel-art office.

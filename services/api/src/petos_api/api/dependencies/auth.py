@@ -12,6 +12,12 @@ from petos_api.core.errors import AppError
 from petos_api.models.base import utc_now
 
 
+def _ensure_aware(dt: datetime.datetime) -> datetime.datetime:
+    if dt.tzinfo is None:
+        return dt.replace(tzinfo=datetime.timezone.utc)
+    return dt
+
+
 def get_session_token(request: Request) -> str:
     token = request.cookies.get(settings.SESSION_COOKIE_NAME)
     if not token:
@@ -42,7 +48,11 @@ async def get_current_user(
             status_code=401, code="unauthenticated", message="Session revoked"
         )
 
-    if session.expires_at < now or session.absolute_expires_at < now:
+    expires_at = _ensure_aware(session.expires_at)
+    absolute_expires_at = _ensure_aware(session.absolute_expires_at)
+    last_seen_at = _ensure_aware(session.last_seen_at)
+
+    if expires_at < now or absolute_expires_at < now:
         raise AppError(
             status_code=401, code="unauthenticated", message="Session expired"
         )
@@ -54,12 +64,12 @@ async def get_current_user(
         )
 
     # Throttled last_seen_at update
-    time_since_last_seen = (now - session.last_seen_at).total_seconds()
+    time_since_last_seen = (now - last_seen_at).total_seconds()
     if time_since_last_seen > settings.SESSION_LAST_SEEN_UPDATE_INTERVAL_SECONDS:
         # Extend idle, but cap at absolute
         new_idle = min(
             now + datetime.timedelta(seconds=settings.SESSION_IDLE_TTL_SECONDS),
-            session.absolute_expires_at,
+            absolute_expires_at,
         )
         await session_repo.update_last_seen(str(session.id), now, new_idle)
         await db.commit()
